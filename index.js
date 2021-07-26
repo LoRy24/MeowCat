@@ -19,6 +19,20 @@ bot.on("message", (message) => {
     }
 });
 
+bot.on("ready", () => {
+    bot.user.setActivity((bot.guilds.cache.size).toString() + " servers",
+        {type: "PLAYING"}).then(() => {});
+});
+
+bot.on("guildDelete", () => {
+    bot.user.setActivity((bot.guilds.cache.size).toString() + " servers", {type: "PLAYING"}).then(() => {});
+});
+
+bot.on("guildCreate", () => {
+    bot.user.setActivity((bot.guilds.cache.size).toString() +
+        " servers", {type: "PLAYING"}).then(() => {});
+});
+
 bot.login(SecurityValues.bot_token).then(() => {
     console.log("Bot logged!");
 });
