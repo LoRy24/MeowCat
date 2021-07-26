@@ -3,6 +3,11 @@ const SecurityValues = require("./security_values.js");
 const Images = require("./images.js")
 const bot = new Discord.Client();
 
+bot.on("ready", () => {
+    bot.user.setActivity((bot.guilds.cache.size).toString() + " servers",
+        {type: "PLAYING"}).then(() => {});
+});
+
 bot.on("message", (message) => {
     let words = message.content.toLowerCase().split(" ");
     if (message.author === bot.user) return;
@@ -17,11 +22,6 @@ bot.on("message", (message) => {
             .setImage(Images.hacker_cat).setTitle("HACKER MEOW"))
             .then(() => {});
     }
-});
-
-bot.on("ready", () => {
-    bot.user.setActivity((bot.guilds.cache.size).toString() + " servers",
-        {type: "PLAYING"}).then(() => {});
 });
 
 bot.on("guildDelete", () => {
